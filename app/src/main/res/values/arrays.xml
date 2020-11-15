@@ -6,7 +6,7 @@
         <item>소득분위 미구분</item>
     </string-array>
     <string-array name="regionArray">
-        <item>선택안함</item>
+        <item>전체</item>
         <item>서울</item>
         <item>부산</item>
         <item>대구</item>

@@ -67,16 +67,45 @@ public class Filter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 regionTxtView.setText("" + parent.getItemAtPosition(position));
-                if (regionTxtView.getText().equals("선택안함")) regionCkBox.setChecked(false);
+                if (regionTxtView.getText().equals("전체")) regionCkBox.setChecked(false);
                 else regionCkBox.setChecked(true);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
-                regionTxtView.setText("선택안함");
+                regionTxtView.setText("전체");
+            }
+        });
+
+        allCkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tuitionInCkBox.isChecked()) tuitionInCkBox.setChecked(false);
+                else tuitionInCkBox.setChecked(true);
+
+                if (tuitionOutCkBox.isChecked()) tuitionOutCkBox.setChecked(false);
+                else tuitionOutCkBox.setChecked(true);
+
+                if (tuitionInandOutCkBox.isChecked()) tuitionInandOutCkBox.setChecked(false);
+                else tuitionInandOutCkBox.setChecked(true);
+
+                if (incomeCkBox.isChecked()) incomeCkBox.setChecked(false);
+                else incomeCkBox.setChecked(true);
+
+                if (regionCkBox.isChecked()) regionCkBox.setChecked(false);
+                else regionCkBox.setChecked(true);
             }
         });
 
         final filterLst finalFL = FL;
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backIntent.putExtra("backFilterLst", finalFL);
+                setResult(RESULT_OK, backIntent);
+                finish();
+            }
+        });
+
         setFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:textColor="#1263ce"
-                android:text="선택안함"/>
+                android:text="전체"/>
         </LinearLayout>
         <Spinner
             android:id="@+id/regionSpin"
