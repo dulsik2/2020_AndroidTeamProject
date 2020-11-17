@@ -1,123 +1,196 @@
 package com.example.teamproject;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Filter extends AppCompatActivity {
+
+    Calendar myCalendar = Calendar.getInstance();
+
+    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
+
+    private void updateLabel() {
+        String myFotmat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFotmat, Locale.KOREA);
+
+        EditText et_startDate = (EditText)findViewById(R.id.startDate);
+        et_startDate.setText(sdf.format(myCalendar.getTime()));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        final ArrayList<String> tFLst = new ArrayList<String>();
-        final ArrayList<String> iCLst = new ArrayList<String>();
-        final ArrayList<String> rGLst = new ArrayList<String>();
+        //filterLst객체에 set하기 위해 만들어진 Lst, String
+        final ArrayList<String> tFLst = new ArrayList<String>(); //tuition
+        final String[] iC = {""}; //income
+        final String[] rG = {""}; //region
+        final ArrayList<String> sPLst = new ArrayList<String>(); //span
 
+        //검색조건의 체크 박스
         final CheckBox tuitionInCkBox = (CheckBox)findViewById(R.id.tuitionInCk);
         final CheckBox tuitionOutCkBox = (CheckBox)findViewById(R.id.tuitionOutCK);
-        final CheckBox tuitionInandOutCkBox = (CheckBox)findViewById(R.id.tuitionInandOutCk);
-        final CheckBox incomeCkBox = (CheckBox)findViewById(R.id.incomeCk);
-        final CheckBox regionCkBox = (CheckBox)findViewById(R.id.regionCk);
+        final CheckBox tuitionInandOutCkBox = (CheckBox)findViewById(R.id.tuitionInandOutCk); //tuition in, out, in+out
+        final CheckBox incomeCkBox = (CheckBox)findViewById(R.id.incomeCk); //income
+        final CheckBox regionCkBox = (CheckBox)findViewById(R.id.regionCk); //region
+        final CheckBox spanCkBox = (CheckBox)findViewById(R.id.spanCk); //span
 
+        //income, region을 Spinner로 선택
         Spinner incomeSpinner = (Spinner)findViewById(R.id.incomeSpin);
         Spinner regionSpinner = (Spinner)findViewById(R.id.regionSpin);
 
+        //레이아웃에 띄운 TextView에 대한 TextView
         final TextView tuitioninTxtView = (TextView)findViewById(R.id.tuitionInTxt);
         final TextView tuitionOutTxtView = (TextView)findViewById(R.id.tuitionOutTxt);
-        final TextView tuitionInandOutTxtView = (TextView)findViewById(R.id.tuitionInandOutTxt);
-        final TextView incomeTxtView = (TextView)findViewById(R.id.incomeTxt);
-        final TextView regionTxtView = (TextView)findViewById(R.id.regionTxt);
+        final TextView tuitionInandOutTxtView = (TextView)findViewById(R.id.tuitionInandOutTxt); //tuition in, out, in+out
+        final TextView incomeTxtView = (TextView)findViewById(R.id.incomeTxt); //income
+        final TextView regionTxtView = (TextView)findViewById(R.id.regionTxt); //span
 
+        //시작, 종료날짜를 설정하기 위한 EditText
+        final EditText spanStartTxt = (EditText)findViewById(R.id.startDate); //시작일
+        final EditText spanTillTxt = (EditText)findViewById(R.id.tillDate); //종료일
+
+        //버튼 (전체선택, 취소, 검색조건 선택)
         Button allCkButton = (Button)findViewById(R.id.allCkBoxBT);
         Button cancelButton = (Button)findViewById(R.id.cancelBT);
         Button setFilterButton = (Button)findViewById(R.id.setFilteringBT);
 
+        //Data를 받아오고 돌려주기 위한 인텐트
         Intent getIntent = getIntent();
         final Intent backIntent = new Intent();
 
         filterLst FL = new filterLst();
 
+        //데이터 받아옴
         FL = (filterLst)getIntent.getSerializableExtra("filterLst");
 
+        //income Spinner에 대한 이벤트 처리
         incomeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                incomeTxtView.setText("" + parent.getItemAtPosition(position));
+                incomeTxtView.setText("" + parent.getItemAtPosition(position)); //선택한 String으로 Text를 설정
+                //String을 선택하지 않으면 checkbox는 false로, 선택하면 true로
                 if (incomeTxtView.getText().equals("선택안함")) {incomeCkBox.setChecked(false);}
                 else incomeCkBox.setChecked(true);
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parent){
+            public void onNothingSelected(AdapterView<?> parent){ //선택하지 않은 default
                 incomeTxtView.setText("선택안함");
             }
         });
 
+        //region Spinner에 대한 이벤트 처리
         regionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                regionTxtView.setText("" + parent.getItemAtPosition(position));
+                regionTxtView.setText("" + parent.getItemAtPosition(position)); //선택한 String으로 Text를 설정
+                //String을 선택하지 않으면 checkbox는 false로, 선택하면 true로
                 if (regionTxtView.getText().equals("전체")) regionCkBox.setChecked(false);
                 else regionCkBox.setChecked(true);
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parent){
+            public void onNothingSelected(AdapterView<?> parent){ //선택하지 않은 default
                 regionTxtView.setText("전체");
             }
         });
 
+        //전체선택 버튼에 대한 이벤트 처리
         allCkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (tuitionInCkBox.isChecked()) tuitionInCkBox.setChecked(false);
-                else tuitionInCkBox.setChecked(true);
-
-                if (tuitionOutCkBox.isChecked()) tuitionOutCkBox.setChecked(false);
-                else tuitionOutCkBox.setChecked(true);
-
-                if (tuitionInandOutCkBox.isChecked()) tuitionInandOutCkBox.setChecked(false);
-                else tuitionInandOutCkBox.setChecked(true);
-
-                if (incomeCkBox.isChecked()) incomeCkBox.setChecked(false);
-                else incomeCkBox.setChecked(true);
-
-                if (regionCkBox.isChecked()) regionCkBox.setChecked(false);
-                else regionCkBox.setChecked(true);
+                //체크박스가 true이면 false로, false이면 true로
+                if (tuitionInCkBox.isChecked() && tuitionOutCkBox.isChecked() && tuitionInandOutCkBox.isChecked() && incomeCkBox.isChecked() && regionCkBox.isChecked() && spanCkBox.isChecked()) {
+                    tuitionInCkBox.setChecked(false);
+                    tuitionOutCkBox.setChecked(false);
+                    tuitionInandOutCkBox.setChecked(false);
+                    incomeCkBox.setChecked(false);
+                    regionCkBox.setChecked(false);
+                    spanCkBox.setChecked(false);
+                }
+                else {
+                    tuitionInCkBox.setChecked(true);
+                    tuitionOutCkBox.setChecked(true);
+                    tuitionInandOutCkBox.setChecked(true);
+                    incomeCkBox.setChecked(true);
+                    regionCkBox.setChecked(true);
+                    spanCkBox.setChecked(true);
+                }
             }
         });
 
         final filterLst finalFL = FL;
+        //취소 버튼을 클릭하였을 때
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backIntent.putExtra("backFilterLst", finalFL);
                 setResult(RESULT_OK, backIntent);
-                finish();
+                finish(); //FL을 그대로 돌려주고 액티비티 종료
             }
         });
 
+        //검색조건을 선택하는 버튼을 클릭하였을 때
         setFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (tuitionInCkBox.isChecked()) {tFLst.add(tuitioninTxtView.getText().toString());}
-                if (tuitionOutCkBox.isChecked()) {tFLst.add(tuitionOutTxtView.getText().toString());}
-                if (tuitionInandOutCkBox.isChecked()) {tFLst.add(tuitionInandOutTxtView.getText().toString());}
-                if (incomeCkBox.isChecked()) {iCLst.add(incomeTxtView.getText().toString());}
-                if (regionCkBox.isChecked()) {rGLst.add(regionTxtView.getText().toString());}
+                //Ck된 조건들만 담아서 FL에 설정한다.
+                if (tuitionInCkBox.isChecked()) {tFLst.add(tuitioninTxtView.getText().toString());} //tuition in
+                if (tuitionOutCkBox.isChecked()) {tFLst.add(tuitionOutTxtView.getText().toString());} //tuition out
+                if (tuitionInandOutCkBox.isChecked()) {tFLst.add(tuitionInandOutTxtView.getText().toString());} //tuition in + out
+                if (incomeCkBox.isChecked()) { //income
+                    if (incomeTxtView.getText().toString().equals("선택안함")){ //CkBox는 되어있지만 선택되지 않았을 떄
+                        AlertDialog.Builder noOpBand = new AlertDialog.Builder(Filter.this);
+                        noOpBand.setMessage("소득분위를 선택해주세요!");
+                        noOpBand.setPositiveButton("확인", null);
+                        noOpBand.create().show();
+                        return;
+                    }
+                    iC[0] = incomeTxtView.getText().toString();}
+                if (regionCkBox.isChecked()) { //region
+                    if (regionTxtView.getText().toString().equals("전체")){ //CkBox는 되어있지만 선택되지 않았을 떄
+                        AlertDialog.Builder noOpBand = new AlertDialog.Builder(Filter.this);
+                        noOpBand.setMessage("지역을 선택해주세요!");
+                        noOpBand.setPositiveButton("확인", null);
+                        noOpBand.create().show();
+                        return;
+                    }
+                    rG[0] = regionTxtView.getText().toString();}
+                if (spanCkBox.isChecked()) { //span
+                    sPLst.add(spanStartTxt.getText().toString());
+                    sPLst.add(spanTillTxt.getText().toString());}
 
+                //filterLst에 대한 Data를 모두 set해주고 액티비티 종료
                 finalFL.setTuitionFeeLst(tFLst);
-                finalFL.setIncomeLst(iCLst);
-                finalFL.setRegionLst(rGLst);
+                finalFL.setIncome(iC[0]);
+                finalFL.setRegion(rG[0]);
+                finalFL.setSpanLst(sPLst);
                 backIntent.putExtra("backFilterLst", finalFL);
                 setResult(RESULT_OK, backIntent);
                 finish();

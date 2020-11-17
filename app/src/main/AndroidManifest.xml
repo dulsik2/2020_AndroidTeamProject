@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Filter" android:theme="@style/Theme.MyDialog"/>
+        <activity android:name=".Filter" android:theme="@style/Theme.MyDialog"/> <!-- 팝업창을 띄우는 Theme로 설정 -->
     </application>
 
 </manifest>

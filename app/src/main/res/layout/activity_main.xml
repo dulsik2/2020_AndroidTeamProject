@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="#e6f4f2">
 
+    <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
         android:textColor="#51b2d3"
         android:textSize="40dp" />
 
+    <!-- 검색조건 선택하는 버튼 -->
     <Button
         android:id="@+id/filterBT"
         android:layout_width="400dp"
@@ -30,6 +32,7 @@
         android:textColor="#016fa2"
         android:textSize="20dp" />
 
+    <!-- 필터링 한 결과를 보기위한 버튼 -->
     <Button
         android:id="@+id/searchBT"
         android:layout_width="400dp"
@@ -40,6 +43,7 @@
         android:textColor="#016fa2"
         android:textSize="20dp" />
 
+    <!-- 검색조건을 확인하기 위한 TextView들 -->
     <TextView
         android:layout_marginTop="30dp"
         android:background="#cbddf5"
@@ -68,6 +72,18 @@
         android:layout_marginTop="10dp"
         android:background="#cbddf5"
         android:id="@+id/regionSetFilterTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textColor="#1263ce"
+        android:textSize="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text = ""/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:background="#cbddf5"
+        android:id="@+id/spanSetFilterTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

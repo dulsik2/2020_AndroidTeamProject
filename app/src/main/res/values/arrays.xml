@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 소득분위 설정 -->
     <string-array name="incomeArray">
         <item>선택안함</item>
         <item>소득분위 구분</item>
         <item>소득분위 미구분</item>
     </string-array>
+    <!-- 지역에 대한 설정 -->
     <string-array name="regionArray">
         <item>전체</item>
         <item>서울</item>
