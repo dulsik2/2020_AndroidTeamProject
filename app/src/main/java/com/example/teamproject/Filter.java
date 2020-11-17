@@ -22,26 +22,18 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Filter extends AppCompatActivity {
+    int flag = 0;
 
-    Calendar myCalendar = Calendar.getInstance();
-
-    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
+    Calendar calendar = Calendar.getInstance(); //calendar
+    DatePickerDialog.OnDateSetListener datePick = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, month);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth); //년, 월, 일 set
+            update(); //Text set
         }
     };
-
-    private void updateLabel() {
-        String myFotmat = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFotmat, Locale.KOREA);
-
-        EditText et_startDate = (EditText)findViewById(R.id.startDate);
-        et_startDate.setText(sdf.format(myCalendar.getTime()));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,6 +175,13 @@ public class Filter extends AppCompatActivity {
                     }
                     rG[0] = regionTxtView.getText().toString();}
                 if (spanCkBox.isChecked()) { //span
+                    if (spanStartTxt.getText().toString().substring(0, 2).equals("ex") || spanTillTxt.getText().toString().substring(0, 2).equals("ex")){ //기간이 설정되어 있지 않으면 경고문을 띄움
+                        AlertDialog.Builder noOpBand = new AlertDialog.Builder(Filter.this);
+                        noOpBand.setMessage("기간을 선택해주세요!");
+                        noOpBand.setPositiveButton("확인", null);
+                        noOpBand.create().show();
+                        return;
+                    }
                     sPLst.add(spanStartTxt.getText().toString());
                     sPLst.add(spanTillTxt.getText().toString());}
 
@@ -196,5 +195,36 @@ public class Filter extends AppCompatActivity {
                 finish();
             }
         });
+
+        //시작일 TextEdit을 클릭하였을 때
+        spanStartTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = 1; //flag 를 1 로 설정
+                new DatePickerDialog(Filter.this, R.style.DatePickerTheme, datePick, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show(); //달력을 띄우고 Text설정
+             }
+        });
+        //종료일 TextEdit을 클릭하였을 때
+        spanTillTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = 2; //flag 를 2 로 설정
+                new DatePickerDialog(Filter.this, R.style.DatePickerTheme, datePick, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show(); //달력을 띄우고 Text설정
+            }
+
+        });
+    }
+    private void update(){ //TextEdit의 Text를 set해주는 Method
+        String myFormat = "yyyy-MM-dd";    // 출력형식   2018-11-28
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+
+        if (flag == 1){ //시작일
+            EditText tmp = (EditText)findViewById(R.id.startDate);
+            tmp.setText(sdf.format(calendar.getTime()));
+        }
+        else if (flag == 2){ //종료일
+            EditText tmp = (EditText)findViewById(R.id.tillDate);
+            tmp.setText(sdf.format(calendar.getTime()));
+        }
     }
 }

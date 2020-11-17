@@ -154,7 +154,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="ex) 2020-10-15 "
-            android:textColor="#CDCECF"
+            android:textColor="#000000"
             android:textSize="12dp" />
 
         <TextView
@@ -168,7 +168,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="ex) 2020-11-15"
-            android:textColor="#CDCECF"
+            android:textColor="#000000"
             android:textSize="12dp" />
     </LinearLayout>
 

@@ -13,4 +13,9 @@
         <item name="windowNoTitle"> true</item>
     </style>
 
+    <!-- 달력의 color 변경 -->
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent"> #4B89DC</item>
+    </style>
+
 </resources>
