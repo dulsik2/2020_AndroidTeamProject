@@ -16,15 +16,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class Filter extends AppCompatActivity {
     int flag = 0;
 
     Calendar calendar = Calendar.getInstance(); //calendar
+    Calendar mindate = Calendar.getInstance(); //최소 날짜
+    Calendar maxdate = Calendar.getInstance();
+
     DatePickerDialog.OnDateSetListener datePick = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -182,6 +187,18 @@ public class Filter extends AppCompatActivity {
                         noOpBand.create().show();
                         return;
                     }
+                    try {
+                        //시작일과 종료일이 잘못되어있으면 경고문 띄우기
+                        if (ckSpanisOK(spanStartTxt.getText().toString(), spanTillTxt.getText().toString())){
+                            AlertDialog.Builder noOpBand = new AlertDialog.Builder(Filter.this);
+                            noOpBand.setMessage("기간을 다시 설정해주세요!");
+                            noOpBand.setPositiveButton("확인", null);
+                            noOpBand.create().show();
+                            return;
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     sPLst.add(spanStartTxt.getText().toString());
                     sPLst.add(spanTillTxt.getText().toString());}
 
@@ -218,6 +235,8 @@ public class Filter extends AppCompatActivity {
         String myFormat = "yyyy-MM-dd";    // 출력형식   2018-11-28
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
+        maxdate.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        mindate.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         if (flag == 1){ //시작일
             EditText tmp = (EditText)findViewById(R.id.startDate);
             tmp.setText(sdf.format(calendar.getTime()));
@@ -226,5 +245,15 @@ public class Filter extends AppCompatActivity {
             EditText tmp = (EditText)findViewById(R.id.tillDate);
             tmp.setText(sdf.format(calendar.getTime()));
         }
+    }
+
+    //시작일과 종료일에 대해서 체크하는 함수
+    public boolean ckSpanisOK(String start, String till) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date stDate = sdf.parse(start);
+        Date tiDate = sdf.parse(till);
+
+        if (stDate.after(tiDate)) return true; //시작일이 종료일보다 이후에 있으면 true 반환
+        return false;
     }
 }

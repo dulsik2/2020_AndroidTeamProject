@@ -9,7 +9,7 @@
                 android:color="#ffffff" />
         </shape>
     </item>
-
+    <!-- 버튼을 클릭하였을때 버튼 변화 -->
     <item android:state_focused="false" android:state_pressed="true">
         <shape>
             <solid android:color="#b2ddff" />
