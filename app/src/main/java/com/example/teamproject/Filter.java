@@ -219,7 +219,7 @@ public class Filter extends AppCompatActivity {
             public void onClick(View view) {
                 flag = 1; //flag 를 1 로 설정
                 new DatePickerDialog(Filter.this, R.style.DatePickerTheme, datePick, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show(); //달력을 띄우고 Text설정
-             }
+            }
         });
         //종료일 TextEdit을 클릭하였을 때
         spanTillTxt.setOnClickListener(new View.OnClickListener() {

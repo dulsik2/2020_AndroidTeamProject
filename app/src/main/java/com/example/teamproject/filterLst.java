@@ -1,7 +1,6 @@
 package com.example.teamproject;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class filterLst implements Serializable {

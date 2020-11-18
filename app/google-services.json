@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "63782635612",
+    "firebase_url": "https://teamproject-d3de3.firebaseio.com",
+    "project_id": "teamproject-d3de3",
+    "storage_bucket": "teamproject-d3de3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63782635612:android:f15d842286d6a406eb7e99",
+        "android_client_info": {
+          "package_name": "com.example.teamproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63782635612-4jamv5bul6vcgvgvl4g8r7v6j2kr6i39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiPbslYxQN5zz1kH3QXH4sgbkKXVuEfGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63782635612-4jamv5bul6vcgvgvl4g8r7v6j2kr6i39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

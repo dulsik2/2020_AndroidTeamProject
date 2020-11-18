@@ -1,13 +1,12 @@
 package com.example.teamproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(filterIntent, 0);//액티비티로 넘어감
             }
         });
+
+        // 검색 버튼 클릭에 대한 이벤트 리스너너
+       searchBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent selectedIntent = new Intent(getApplicationContext(), Selected.class);
+                selectedIntent.putExtra("selectedLst", FL);
+                startActivity(selectedIntent);
+            }
+        });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
