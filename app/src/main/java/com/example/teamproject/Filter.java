@@ -26,8 +26,6 @@ public class Filter extends AppCompatActivity {
     int flag = 0;
 
     Calendar calendar = Calendar.getInstance(); //calendar
-    Calendar mindate = Calendar.getInstance(); //최소 날짜
-    Calendar maxdate = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener datePick = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -234,8 +232,6 @@ public class Filter extends AppCompatActivity {
         String myFormat = "yyyy-MM-dd";    // 출력형식   2018-11-28
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
-        maxdate.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        mindate.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         if (flag == 1){ //시작일
             EditText tmp = (EditText)findViewById(R.id.startDate);
             tmp.setText(sdf.format(calendar.getTime()));

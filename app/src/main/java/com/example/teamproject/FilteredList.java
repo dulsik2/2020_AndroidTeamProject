@@ -34,6 +34,9 @@ public class FilteredList extends AppCompatActivity {
     private filterLst FL;
     private Scholar selectedItem;
     private String link = null;
+    private String toSaveDate = null;
+    private String toSaveTitle = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class FilteredList extends AppCompatActivity {
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final Button linkBtn = (Button) findViewById(R.id.goLink);
         final Button backBtn = (Button) findViewById(R.id.backMain);
+        final Button calBt = (Button)findViewById(R.id.upcalendar);
         final ListView listView = (ListView) findViewById(R.id.listView);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         final ListViewAdaptor mAdaptor = new ListViewAdaptor(FilteredList.this);
@@ -65,6 +69,8 @@ public class FilteredList extends AppCompatActivity {
                 view.setBackgroundColor(Color.parseColor("#FFDEDE"));
                 selectedItem = mAdaptor.getItem(i);
                 link = mAdaptor.getItem(i).getLink();
+                toSaveDate = mAdaptor.getItem(i).getEndDate();
+                toSaveTitle = mAdaptor.getItem(i).getTitle();
                 Log.d("Link", link);
                 last = view;
             }
@@ -139,18 +145,31 @@ public class FilteredList extends AppCompatActivity {
             }
         });
 
-        Button calBt = (Button)findViewById(R.id.upcalendar);
+        //일정추가 버튼 클릭시
         calBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //DB에서 년/월/일 받아서 할당
+                int year = Integer.parseInt(toSaveDate.substring(0, 4));
+                int month = Integer.parseInt(toSaveDate.substring(5, 7)) - 1;
+                int day = Integer.parseInt(toSaveDate.substring(8, 10));
+
+                //Calendar 가져오기
                 Calendar calAppointment = Calendar.getInstance();
+
+                //Calendar 에 년/월/일 set
+                calAppointment.set(Calendar.YEAR, year);
+                calAppointment.set(Calendar.MONTH, month);
+                calAppointment.set(Calendar.DAY_OF_MONTH, day);
                 calAppointment.set(Calendar.HOUR_OF_DAY, 12);
                 calAppointment.set(Calendar.MINUTE, 30);
+
+                //구글 캘린더 연동
                 Intent intent = new Intent(Intent.ACTION_INSERT);
                 intent.setType("vnd.android.cursor.item/event");
-                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calAppointment.getTime().getTime());
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calAppointment.getTime().getTime()); //시간 설정
                 intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Your Timezone");
-                intent.putExtra(CalendarContract.Events.TITLE, "Title");
+                intent.putExtra(CalendarContract.Events.TITLE, toSaveTitle); //타이틀 == 장학금 명
                 intent.putExtra(CalendarContract.Events.DESCRIPTION, "Your description");
                 intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Your location");
                 if (intent.resolveActivityInfo(getApplicationContext().getPackageManager(), 0) != null) {
