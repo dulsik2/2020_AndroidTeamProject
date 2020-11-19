@@ -35,7 +35,7 @@ public class FilteredList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filteredList);
+        setContentView(R.layout.activity_filteredist);
         setTitle("SelectedActivity");
 
         final Intent getIntent = getIntent();
