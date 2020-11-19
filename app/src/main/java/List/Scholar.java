@@ -9,15 +9,17 @@ public class Scholar {
     private String region;
     private String startDate;
     private String endDate;
+    private String link;
 
     public Scholar(){}
-    public Scholar(String t, String fee, String in, String re, String s, String e){
+    public Scholar(String t, String fee, String in, String re, String s, String e, String l){
         title = t;
         tuitionFee = fee;
         income = in;
         region = re;
         startDate = s;
         endDate = e;
+        link = l;
     }
 
     public String getTitle(){return title;}
@@ -26,4 +28,5 @@ public class Scholar {
     public String getRegion(){return region;}
     public String getStartDate(){return startDate;}
     public String getEndDate(){return endDate;}
+    public String getLink(){return link;}
 }

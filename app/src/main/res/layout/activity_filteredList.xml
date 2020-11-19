@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Selected"
-    android:background="#e6f4f2">
+    tools:context=".FilteredList"
+    android:background="#e6f4f2"
+    tools:ignore="MissingDefaultResource">
 
     <ListView
         android:layout_weight="9"
@@ -15,13 +16,13 @@
         android:layout_height="match_parent"
         android:choiceMode="singleChoice">
     </ListView>
-    
+
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
-        
+
         <Button
             android:id="@+id/backMain"
             android:layout_width="wrap_content"

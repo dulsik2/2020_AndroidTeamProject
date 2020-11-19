@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
        searchBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent selectedIntent = new Intent(getApplicationContext(), Selected.class);
+                Intent selectedIntent = new Intent(getApplicationContext(), FilteredList.class);
                 selectedIntent.putExtra("selectedLst", FL);
                 startActivityForResult(selectedIntent, 1);
             }
@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        TextView ttSetFilt = (TextView)findViewById(R.id.tuitionSetFilterTxt);
+        TextView icSetFilt = (TextView)findViewById(R.id.incomeSetFilterTxt);
+        TextView rgSetFilt = (TextView)findViewById(R.id.regionSetFilterTxt);
+        TextView spSetFilt = (TextView)findViewById(R.id.spanSetFilterTxt); //필터링 조건들을 띄우기 위한 TextView
         if (requestCode == 0) { //filterIntent에서의 결과를 처리
             if (resultCode == RESULT_OK) {
                 String tmp = ""; //Txt를 설정하기 위한 temp변수
-                TextView ttSetFilt = (TextView)findViewById(R.id.tuitionSetFilterTxt);
-                TextView icSetFilt = (TextView)findViewById(R.id.incomeSetFilterTxt);
-                TextView rgSetFilt = (TextView)findViewById(R.id.regionSetFilterTxt);
-                TextView spSetFilt = (TextView)findViewById(R.id.spanSetFilterTxt); //필터링 조건들을 띄우기 위한 TextView
 
                 FL = (filterLst)data.getSerializableExtra("backFilterLst"); //FL을 다시 할당
                 ArrayList<String> tuitionfeeLst = FL.getTuitionFeeLst();
@@ -96,5 +96,15 @@ public class MainActivity extends AppCompatActivity {
                 else spSetFilt.setVisibility(View.GONE);
             }
         }
+        else if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                FL = new filterLst();
+                ttSetFilt.setVisibility(View.GONE);
+                icSetFilt.setVisibility(View.GONE);
+                rgSetFilt.setVisibility(View.GONE);
+                spSetFilt.setVisibility(View.GONE);
+            }
+        }
     }
 }
+
