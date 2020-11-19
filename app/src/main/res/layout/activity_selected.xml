@@ -9,9 +9,41 @@
     android:background="#e6f4f2">
 
     <ListView
+        android:layout_weight="9"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice">
     </ListView>
+    
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        
+        <Button
+            android:id="@+id/backMain"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="돌아가기"
+            android:textColor="#016fa2"
+            android:background="#b2ddff"/>
+
+        <Button
+            android:id="@+id/goLink"
+            android:layout_width="161dp"
+            android:layout_height="40dp"
+            android:text="자세히보기(링크연결)"
+            android:textColor="#016fa2"
+            android:background="#b2ddff" />
+
+        <Button
+            android:id="@+id/upcalendar"
+            android:layout_width="165dp"
+            android:layout_height="40dp"
+            android:text="캘린더에 추가"
+            android:textColor="#016fa2"
+            android:background="#b2ddff" />
+    </LinearLayout>
 </LinearLayout>

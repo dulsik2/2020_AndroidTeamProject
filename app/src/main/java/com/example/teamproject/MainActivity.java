@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent selectedIntent = new Intent(getApplicationContext(), Selected.class);
                 selectedIntent.putExtra("selectedLst", FL);
-                startActivity(selectedIntent);
+                startActivityForResult(selectedIntent, 1);
             }
         });
     }
