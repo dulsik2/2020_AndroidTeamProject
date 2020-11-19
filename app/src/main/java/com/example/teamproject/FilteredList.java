@@ -35,7 +35,7 @@ public class FilteredList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filteredist);
+        setContentView(R.layout.activity_filteredlist);
         setTitle("SelectedActivity");
 
         final Intent getIntent = getIntent();
@@ -119,23 +119,23 @@ public class FilteredList extends AppCompatActivity {
                             Log.d(TAG, tmp.getIncome() + ", " + tmp.getTuitionFee() + ", " + tmp.getRegion());
                         }
                     }
+                    if (mAdaptor.isEmpty()){
+                        AlertDialog.Builder noScholar = new AlertDialog.Builder(FilteredList.this);
+                        noScholar.setMessage("해당되는 장학금이 없습니다!");
+                        noScholar.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                setResult(RESULT_OK, getIntent);
+                                finish();
+                            }
+                        });
+                        noScholar.create().show();
+                    }
                 }else {
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
         });
-        if (mAdaptor.getCount() == 0){
-            AlertDialog.Builder noScholar = new AlertDialog.Builder(this);
-            noScholar.setMessage("해당되는 장학금이 없습니다!");
-            noScholar.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    setResult(RESULT_OK, getIntent);
-                    finish();
-                }
-            });
-            noScholar.create().show();
-        }
     }
     public int dateToInt(String t){
         return Integer.parseInt(t.replace("-", ""));
