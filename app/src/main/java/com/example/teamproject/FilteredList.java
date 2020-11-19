@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import List.ListViewAdaptor;
 import List.Scholar;
@@ -133,6 +135,26 @@ public class FilteredList extends AppCompatActivity {
                     }
                 }else {
                     Log.w(TAG, "Error getting documents.", task.getException());
+                }
+            }
+        });
+
+        Button calBt = (Button)findViewById(R.id.upcalendar);
+        calBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calAppointment = Calendar.getInstance();
+                calAppointment.set(Calendar.HOUR_OF_DAY, 12);
+                calAppointment.set(Calendar.MINUTE, 30);
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, calAppointment.getTime().getTime());
+                intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "Your Timezone");
+                intent.putExtra(CalendarContract.Events.TITLE, "Title");
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, "Your description");
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Your location");
+                if (intent.resolveActivityInfo(getApplicationContext().getPackageManager(), 0) != null) {
+                    startActivity(intent);
                 }
             }
         });
