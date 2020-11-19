@@ -2,6 +2,7 @@ package com.example.teamproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 검색 버튼 클릭에 대한 이벤트 리스너너
+        // 검색 버튼 클릭에 대한 이벤트 리스너
        searchBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //span에 대한 정보를 TextView 로 띄움
                 if (!spanLst.isEmpty()) {
+                    Log.d("mainSpan", spanLst.get(0));
                     tmp = "[ 기간 : " + spanLst.get(0) + " ~ " + spanLst.get(1) + "]";
                     spSetFilt.setText(tmp);
                     spSetFilt.setVisibility(View.VISIBLE);

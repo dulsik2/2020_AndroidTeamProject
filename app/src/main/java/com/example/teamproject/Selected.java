@@ -35,6 +35,7 @@ public class Selected extends AppCompatActivity {
         final String iC = FL.getIncome();
         final String rG = FL.getRegion();
         final String TAG = "TestFB";
+        final ArrayList<String> spanLst = FL.getSpanLst();
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final ListView listView = (android.widget.ListView) findViewById(R.id.listView);
@@ -55,39 +56,30 @@ public class Selected extends AppCompatActivity {
             else q = q.whereEqualTo("income", rG);
         }
 
-        if (q == null) {
-            db.collection("Scholarship").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task){
-                    if (task.isSuccessful()){
-                        for (QueryDocumentSnapshot document : task.getResult()){
-                            Scholar tmp = document.toObject(Scholar.class);
+        if (q == null) q = db.collection(("Scholarship"));
+        q.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task){
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot document : task.getResult()){
+                        Scholar tmp = document.toObject(Scholar.class);
+                        if (spanLst.size() > 0){
+                            if (dateToInt(tmp.getStartDate()) >= dateToInt(spanLst.get(0)) && dateToInt(tmp.getEndDate()) <= dateToInt(spanLst.get(1))){
+                                mAdaptor.addItem(tmp);
+                                Log.d(TAG, tmp.getIncome() + ", " + tmp.getTuitionFee() + ", " + tmp.getRegion());
+                            }
+                        }else{
                             mAdaptor.addItem(tmp);
                             Log.d(TAG, tmp.getIncome() + ", " + tmp.getTuitionFee() + ", " + tmp.getRegion());
-                            Log.d("ListView", Integer.toString(mAdaptor.getCount()));
                         }
-                    }else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
                     }
+                }else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
                 }
-            });
-        }
-        else {
-            q.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task){
-                    if (task.isSuccessful()){
-                        for (QueryDocumentSnapshot document : task.getResult()){
-                            Scholar tmp = document.toObject(Scholar.class);
-                            mAdaptor.addItem(tmp);
-                            Log.d(TAG, tmp.getIncome() + ", " + tmp.getTuitionFee() + ", " + tmp.getRegion());
-                            Log.d("ListView", Integer.toString(mAdaptor.getCount()));
-                        }
-                    }else {
-                        Log.w(TAG, "Error getting documents.", task.getException());
-                    }
-                }
-            });
-        }
+            }
+        });
+    }
+    public int dateToInt(String t){
+        return Integer.parseInt(t.replace("-", ""));
     }
 }

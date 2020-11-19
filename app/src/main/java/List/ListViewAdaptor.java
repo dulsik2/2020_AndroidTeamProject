@@ -1,6 +1,7 @@
 package List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ public class ListViewAdaptor extends BaseAdapter {
     private TextView fee;
     private TextView income;
     private TextView region;
+    private TextView start;
+    private TextView end;
 
     private Context mContext = null;
     public ArrayList<Scholar> arr = new ArrayList<>();
@@ -44,6 +47,8 @@ public class ListViewAdaptor extends BaseAdapter {
     // position에 위치한 데이터를 화면에 출력하는데 사용될 View 리턴
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("Adaptor", "**************************** Adaptor getView ****************************");
+        Log.d("Adaptor", Integer.toString(getCount()));
         final int pos = position;
 
         if (convertView == null){
@@ -55,6 +60,8 @@ public class ListViewAdaptor extends BaseAdapter {
         fee = (TextView) convertView.findViewById(R.id.tuitionFeeView);
         income = (TextView) convertView.findViewById(R.id.incomeView);
         region = (TextView) convertView.findViewById(R.id.regionView);
+        start = (TextView) convertView.findViewById(R.id.startView);
+        end = (TextView) convertView.findViewById(R.id.endView);
 
         Scholar listViewItem = arr.get(pos);
 
@@ -62,6 +69,8 @@ public class ListViewAdaptor extends BaseAdapter {
         fee.setText("등록금 내/외: " + listViewItem.getTuitionFee());
         income.setText("소득분위: " + listViewItem.getIncome());
         region.setText("지역: " + listViewItem.getRegion());
+        start.setText(listViewItem.getStartDate());
+        end.setText(listViewItem.getEndDate());
         return convertView;
     }
 }

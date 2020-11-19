@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class Filter extends AppCompatActivity {
         final ArrayList<String> tFLst = new ArrayList<String>(); //tuition
         final String[] iC = {""}; //income
         final String[] rG = {""}; //region
-        final ArrayList<String> sPLst = new ArrayList<String>(); //span
+        final ArrayList<String> sPLst = new ArrayList<>(); //span
 
         //검색조건의 체크 박스
         final CheckBox tuitionInCkBox = (CheckBox)findViewById(R.id.tuitionInCk);
