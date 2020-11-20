@@ -113,8 +113,6 @@
 
  AndroidManifest.xml파일에 3개의 액티비티가 생성되어있음을 확인할 수 있다.
  `Filter.class`에 대한 액티비티는 팝업창을 띄우는 Theme로 설정하였다.
- 세번째 액티비티인 `FilteredList.class`에 대한 액티비티는 `ignore`을 사용하여
- ()()
 
  ##### - filterLst.class
 
