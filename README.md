@@ -776,7 +776,6 @@ calBt.setOnClickListener(new View.OnClickListener() {
 
 3. 캘린더 앱 연동하기
 
-
 ![12.selectSholar%20before%20update%20Calendar](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/12.selectSholar%20before%20update%20Calendar.PNG)
 ![13.googleCalendar](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/13.googleCalendar.PNG)
 
