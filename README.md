@@ -1,6 +1,6 @@
 # Mobile Programming Team Project
 
-### 20191644 이연주
+### 20191641 이소영, 20191644 이연주
 ---
 
 **목차**
