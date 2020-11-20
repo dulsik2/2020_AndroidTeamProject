@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- Title Bar -->
+    <!-- Title Bar _ 이연주 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_gravity="center_vertical"
         android:textAlignment="center"/>
 
-    <!-- 등록금 내 CK -->
+    <!-- 등록금 내 CK _ 이연주 -->
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:textSize="20dp"/>
     </LinearLayout>
 
-    <!-- 등록금 외 CK -->
+    <!-- 등록금 외 CK _ 이연주 -->
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:textSize="20dp"/>
     </LinearLayout>
 
-    <!-- 등록금 내 + 외 CK -->
+    <!-- 등록금 내 + 외 CK _ 이연주 -->
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:textSize="20dp"/>
     </LinearLayout>
 
-    <!-- 소득분위 -->
+    <!-- 소득분위 _ 이연주 -->
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <!-- 지역 선택 -->
+    <!-- 지역 선택 _ 이연주 -->
     <LinearLayout
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
@@ -132,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <!-- 기간설정 -->
+    <!-- 기간설정 _ 이연주 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -172,10 +172,10 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-    <!-- 전체선택, 취소, 검색필터 설정 버튼-->
+    <!-- 전체선택, 취소, 검색필터 설정 버튼 _ 이연주-->
     <!-- 전체선택 : 조건에 해당하는 모든 필터 선택, ~> 만약 조건을 선택하지 않으면 필터링 되지 않으므로 DB에 있는 모든 장학금이 선택 (조건이 없는 장학금까지)
     취소 : 이전에 선택되어있던 조건들 혹은 아무 조건 없음
-    검색필터 설정 : 필터링 할 조건을 설정-->
+    검색필터 설정 : 필터링 할 조건을 설정 _ 이연주-->
 
     <LinearLayout
         android:layout_width="match_parent"

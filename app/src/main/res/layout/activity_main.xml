@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="#e6f4f2">
 
-    <!-- Title -->
+    <!-- Title _ 이연주 -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:textColor="#51b2d3"
         android:textSize="40dp" />
 
-    <!-- 검색조건 선택하는 버튼 -->
+    <!-- 검색조건 선택하는 버튼 _ 이연주 -->
     <Button
         android:id="@+id/filterBT"
         android:layout_width="400dp"
@@ -32,7 +32,7 @@
         android:textColor="#016fa2"
         android:textSize="20dp" />
 
-    <!-- 필터링 한 결과를 보기위한 버튼 -->
+    <!-- 필터링 한 결과를 보기위한 버튼 _ 이연주 -->
     <Button
         android:id="@+id/searchBT"
         android:layout_width="400dp"
@@ -43,7 +43,7 @@
         android:textColor="#016fa2"
         android:textSize="20dp" />
 
-    <!-- 검색조건을 확인하기 위한 TextView들 -->
+    <!-- 검색조건을 확인하기 위한 TextView들 _ 이연주 -->
     <TextView
         android:layout_marginTop="30dp"
         android:background="#cbddf5"

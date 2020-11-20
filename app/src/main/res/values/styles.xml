@@ -7,13 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Title을 없애기 위해 추가함 -->
+    <!-- Title을 없애기 위해 추가함 _ 이연주 -->
     <style name="Theme.MyDialog" parent = "Theme.AppCompat.Light.Dialog">
         <item name="windowActionBar"> false</item>
         <item name="windowNoTitle"> true</item>
     </style>
 
-    <!-- 달력의 color 변경 -->
+    <!-- 달력의 color 변경 _ 이연주 -->
     <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent"> #4B89DC</item>
     </style>

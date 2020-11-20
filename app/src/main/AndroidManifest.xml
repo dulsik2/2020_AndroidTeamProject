@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Filter" android:theme="@style/Theme.MyDialog"/> <!-- 팝업창을 띄우는 Theme로 설정 -->
+        <activity android:name=".Filter" android:theme="@style/Theme.MyDialog"/> <!-- 팝업창을 띄우는 Theme로 설정 --> _ 이연주
         <activity
             android:name=".FilteredList"
             tools:ignore="DuplicateActivity" />
