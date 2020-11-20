@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 리스트뷰 아이템 디자인 _ 이소영 -->
     <item android:state_focused="false" android:state_pressed="false">
         android:bottom="1dp"
         android:left="-2dp"

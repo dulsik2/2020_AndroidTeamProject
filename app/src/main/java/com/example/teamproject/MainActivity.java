@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent selectedIntent = new Intent(getApplicationContext(), FilteredList.class);
-                selectedIntent.putExtra("selectedLst", FL);
+                selectedIntent.putExtra("FilteredList", FL);
                 startActivityForResult(selectedIntent, 1);
             }
         });
@@ -96,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
                 else spSetFilt.setVisibility(View.GONE);
             }
         }
-        // selectedIntent에 대한 처리 _ 이소영
+
+        // FilteredListIntent에 대한 처리 _ 이소영
+        // FilteredListIntent 종료되면 이전에 선택한 조건들 초기화
         else if (requestCode == 1){
             if (resultCode == RESULT_OK){
                 FL = new filterLst();

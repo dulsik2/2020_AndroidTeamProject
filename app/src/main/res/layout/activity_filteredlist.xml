@@ -9,6 +9,7 @@
     android:background="#e6f4f2"
     tools:ignore="MissingDefaultResource">
 
+    <!--필터링된 장학금 표시_이소영-->
     <ListView
         android:layout_weight="9"
         android:id="@+id/listView"
@@ -17,6 +18,7 @@
         android:choiceMode="singleChoice">
     </ListView>
 
+    <!--버튼 모음_이연주-->
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"

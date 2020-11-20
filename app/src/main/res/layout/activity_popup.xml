@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4B89DC"
+        android:background="#CFE4F4"
         android:textColor="#203a5e"
         android:text="검색 조건 선택"
         android:textSize="30dp"
