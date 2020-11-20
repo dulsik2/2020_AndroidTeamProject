@@ -42,12 +42,6 @@ public class Filter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        //filterLst객체에 set하기 위해 만들어진 Lst, String
-        final ArrayList<String> tFLst = new ArrayList<String>(); //tuition
-        final String[] iC = {""}; //income
-        final String[] rG = {""}; //region
-        final ArrayList<String> sPLst = new ArrayList<>(); //span
-
         //검색조건의 체크 박스
         final CheckBox tuitionInCkBox = (CheckBox)findViewById(R.id.tuitionInCk);
         final CheckBox tuitionOutCkBox = (CheckBox)findViewById(R.id.tuitionOutCK);
@@ -154,6 +148,13 @@ public class Filter extends AppCompatActivity {
         setFilterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //filterLst객체에 set하기 위해 만들어진 Lst, String
+                ArrayList<String> tFLst = new ArrayList<String>(); //tuition
+                String[] iC = {""}; //income
+                String[] rG = {""}; //region
+                ArrayList<String> sPLst = new ArrayList<>(); //span
+
+                tFLst = new ArrayList<String>();
                 //Ck된 조건들만 담아서 FL에 설정한다.
                 if (tuitionInCkBox.isChecked()) {tFLst.add(tuitioninTxtView.getText().toString());} //tuition in
                 if (tuitionOutCkBox.isChecked()) {tFLst.add(tuitionOutTxtView.getText().toString());} //tuition out
@@ -210,6 +211,8 @@ public class Filter extends AppCompatActivity {
             }
         });
 
+        spanStartTxt.setInputType(0);
+        spanTillTxt.setInputType(0);
         //시작일 TextEdit을 클릭하였을 때
         spanStartTxt.setOnClickListener(new View.OnClickListener() {
             @Override
