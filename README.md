@@ -775,6 +775,7 @@ calBt.setOnClickListener(new View.OnClickListener() {
 검색 조건은 위에서 선택했던 조건 대로 메인화면에 띄워진 것을 볼 수 있다.
 
 3. 캘린더 앱 연동하기
+
 ![12.selectSholar%20before%20update%20Calendar](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/12.selectSholar%20before%20update%20Calendar.PNG)
 ![13.googleCalendar](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/13.googleCalendar.PNG)
 
@@ -788,12 +789,15 @@ calBt.setOnClickListener(new View.OnClickListener() {
 ![4.noIncome](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/4.noIncome.PNG)
 
 2. 체크박스가 선택되었는데 지역 항목이 선택되지 않았을 경우
+
 ![5.noRegion](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/5.noRegion.PNG)
 
 3. 체크박스가 선택되었는데 일정이 선택되지 않았을 경우
+
 ![6.noSpan](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/6.noSpan.PNG)
 
 4. 지정한 일정이 잘못된 경우
+
 ![8.setWrongDate](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/8.setWrongDate.PNG)
 ![9.WrongDateAlert](https://github.com/yannJu/AndroidStudioProject/blob/master/teamProjectCapture/9.WrongDateAlert.PNG)
 
